@@ -1,2 +1,16 @@
+<div class="container">
+<div class="row">
+    <div class="col-md-4">
+        <p>burası sidebar alanı</p>
+    </div>
+    <div class="col-md-8">
+        <router-outlet></router-outlet>
+        <ul *ngIf="todoList.length>0">
+            <li *ngFor="let item of todoList">{{item}}</li>
+        </ul>
+        <p *ngIf="todoList.length==0">Listede hiçbir öğe yok</p>
+    </div>
+</div>
 
-<p>homepage works!</p>
+</div>
+
