@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TodoResponse } from '../../models/todo-response';
+import { ModelListResponse } from '../../models/responses/model-list-response';
 
 @Component({
   selector: 'app-homepage',
@@ -13,19 +15,38 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrl: './homepage.component.scss'
 })
 export class HomepageComponent implements OnInit {
-  todoList:string[]=[
-    // 'todolist 1',
-    // 'todolist 2',
-    // 'todolist 3'
-  ];
+  todoList:TodoResponse[]=[];
+  modelList:ModelListResponse[]=[];
 
   constructor(private httpClient:HttpClient){}
 
   ngOnInit(): void {
-    this.getTodos2();
+    this.getListModels();
   }
 
+  getListModels(){
+    this.httpClient.get<ModelListResponse[]>("http://localhost:5190/api/Models")
+    .subscribe({
+      next:(response:ModelListResponse[])=>{
+        console.log("Cevap geldi :",response);
+        this.modelList=response;
+      },
+      error:(error)=>{console.log("cevap hatalı :",error)},
+      complete:()=>{console.log("istek sonlandı")}
+    })
+  }
  
+  getListTodos(){
+    this.httpClient.get<TodoResponse[]>("https://jsonplaceholder.typicode.com/todos")
+    .subscribe({
+      next:(response:TodoResponse[])=>{
+        console.log("Cevap geldi :",response);
+        this.todoList=response;
+      },
+      error:(error)=>{console.log("cevap hatalı :",error)},
+      complete:()=>{console.log("istek sonlandı")}
+    })
+  }
 
 
   getTodos1(){

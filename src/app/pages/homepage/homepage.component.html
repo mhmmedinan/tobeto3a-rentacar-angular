@@ -5,10 +5,25 @@
     </div>
     <div class="col-md-8">
         <router-outlet></router-outlet>
-        <ul *ngIf="todoList.length>0">
-            <li *ngFor="let item of todoList">{{item}}</li>
-        </ul>
-        <p *ngIf="todoList.length==0">Listede hiçbir öğe yok</p>
+        <div class="row" style="overflow:auto;height: auto;margin-top: 10px;">
+        <!--<div *ngFor="let item of todoList" class="card" style="width: 20rem; margin: 10px;">
+            <div class="card-body">
+              <h5 class="card-title">ID :{{item.id}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted"> Title :{{item.title}}</h6>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="card-link">Completed : {{item.completed}}</a>
+              <a href="#" class="card-link"> User Id :{{item.userId}}</a>
+            </div>
+          </div>
+        </div>-->
+        <div *ngFor="let item of modelList" class="card" style="width: 25rem; margin: 10px;">
+            <div class="card-body">
+              <h5 class="card-title">ID :{{item.id}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted"> brandId :{{item.brandId}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">brandName : {{item.brandName}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted"> Name :{{item.name}}</h6>
+            </div>
+          </div>
     </div>
 </div>
 
