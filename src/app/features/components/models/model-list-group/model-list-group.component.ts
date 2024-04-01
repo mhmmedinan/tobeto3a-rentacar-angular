@@ -19,11 +19,11 @@ export class ModelListGroupComponent implements OnInit {
   currentModel!:GetModelListResponse;
   constructor(private modelService:ModelService){}
   ngOnInit(): void {
-    this.getModels();
+    this.getModels("53a3ec8b-3efc-4e42-106d-08dc4a6f437e");
   }
 
-  getModels(){
-    this.modelService.getList().subscribe((response)=>{
+  getModels(brandId:string){
+    this.modelService.getListByBrandId(brandId).subscribe((response)=>{
       this.models=response;
     })
   }

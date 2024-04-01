@@ -5,6 +5,6 @@ import { GetModelListResponse } from '../../models/responses/get-model-list-resp
 @Injectable()
 export abstract class ModelBaseService {
   
-  abstract getList()
+  abstract getListByBrandId(brandId:string)
       :Observable<GetModelListResponse[]>;
 }
