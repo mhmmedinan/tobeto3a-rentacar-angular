@@ -6,4 +6,6 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export abstract class CarBaseService{
     abstract getList(pageRequest:PageRequest):Observable<CarListItemDto>
+    abstract getCarListByModelId(pageRequest:PageRequest,modelId:string)
+    :Observable<CarListItemDto>
 }

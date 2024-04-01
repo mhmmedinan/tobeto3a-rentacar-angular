@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, model } from '@angular/core';
 import { CarBaseService } from '../abstracts/car-base.service';
 import { Observable, map } from 'rxjs';
 import { PageRequest } from '../../../core/models/page-request';
@@ -20,6 +20,32 @@ export class CarService extends CarBaseService {
     };
 
     return this.httpClient.get<CarListItemDto>(this.apiUrl,{
+      params:newRequest
+    }).pipe(
+      map((response)=>{
+        const newResponse:CarListItemDto={
+          index:pageRequest.page,
+          size:pageRequest.pageSize,
+          count:response.count,
+          hasNext:response.hasNext,
+          hasPrevious:response.hasPrevious,
+          items:response.items,
+          pages:response.pages
+        };
+        return newResponse;
+      })
+    )
+  }
+
+
+  override getCarListByModelId(pageRequest: PageRequest,modelId:string): Observable<CarListItemDto> {
+    const newRequest :{[key:string]:string | number}={
+      page:pageRequest.page,
+      pageSize:pageRequest.pageSize,
+      modelId:modelId
+    };
+
+    return this.httpClient.get<CarListItemDto>(`${this.apiUrl}/getcarbymodel`,{
       params:newRequest
     }).pipe(
       map((response)=>{

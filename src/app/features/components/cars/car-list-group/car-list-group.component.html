@@ -1,7 +1,7 @@
 <div class="row" style="margin-top: 10px;">
     <h3 *ngIf="!carList">Araba Bulunamadı</h3>
  <div *ngFor="let car of carList.items" class="card" style="width: 16rem;margin:20px;opacity: 0.8;">
- <img src="" class="card-img-top" alt="arabanın adı Image" height="150px" />
+ <img [src]="car.imagePath" class="card-img-top" alt="arabanın adı Image" height="150px" />
  <div class="car-body">
     <p class="card-text">Marka:<strong>{{car.brandName}}</strong></p>
  </div>
@@ -10,6 +10,12 @@
   <li class="list-group-item"><b>Model Yılı:</b><span style="float:right;">{{car.modelYear}}</span></li>
   <li class="list-group-item"><b>Fiyat:</b><span style="float:right;">{{car.dailyPrice}}</span></li>
  </ul>
-</div>
+</div> 
+<button *ngIf="carList.hasNext" type="button"
+     (click)="onViewMoreClicked()" [disabled]="!carList.hasNext" class="btn border-0">
+     Sonraki Sayfa {{this.currentPageNumber}} {{carList.hasNext}}</button>
+     <button *ngIf="carList.hasPrevious" type="button"
+        (click)="onPreviousPageClicked()" [disabled]="!carList.hasPrevious" class="btn border-0">
+        Önceki Sayfa {{this.currentPageNumber-1}} {{carList.hasPrevious}}</button>
 </div>
 

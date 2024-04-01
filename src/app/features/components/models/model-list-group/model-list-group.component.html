@@ -12,7 +12,7 @@
 <div class="mb-3" style="opacity: 0.8;">
     <select class="form-select" size="5" aria-label="size 3 select example">
         <option style="background-color: rgb(252,251,245);" (click)="setCurrentModel(model)"
-        [class]="getCurrentModelClass(model)" routerLink="car/model/{{model.id}}"
+        [class]="getCurrentModelClass(model)" routerLink="cars/model/{{model.id}}"
         *ngFor="let model of models | filterPipe:filterText" value="1">{{model.name}}</option>
     </select>
 </div>
