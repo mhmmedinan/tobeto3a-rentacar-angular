@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BrandService } from '../../../services/concretes/brand.service';
 import { GetListBrandResponse } from '../../../models/responses/brands/get-brand-list-response';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +16,8 @@ import { SharedModule } from '../../../../shared/shared.module';
 })
 export class BrandListGroupComponent implements OnInit{
 
+  @Input() selectedBrandId!:string; //seçilen markanın kimliği
+  @Output() brandSelected = new EventEmitter<string>(); //markalar yüklendiğinde olay yayınlayıcı
   brands!:GetListBrandResponse[];
   currentBrand!:GetListBrandResponse;
   filterText="";
@@ -23,8 +25,13 @@ export class BrandListGroupComponent implements OnInit{
   
   ngOnInit(): void {
     this.getBrands();
+    console.log(this.brandSelected)
   }
 
+  onSelectedBrand(brandId:string):void{
+    this.selectedBrandId=brandId;
+    this.brandSelected.emit(this.selectedBrandId);
+  }
 
   getBrands(){
      this.brandService.getList().subscribe((response)=>{

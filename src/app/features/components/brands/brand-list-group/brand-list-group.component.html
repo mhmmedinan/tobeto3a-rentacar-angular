@@ -10,7 +10,10 @@
 </ul>
 <div class="mb-3" style="opacity: 0.8;">
     <select class="form-select" size="5" aria-label="size 3 select example">
-        <option style="background-color: rgb(252,251,245);" (click)="setCurrentBrand(brand)"
+        <option style="background-color: rgb(252,251,245);" (click)="onSelectedBrand(brand.id)"
+        [ngClass]="{
+            active:selectedBrandId===brand.id
+        }"
         [class]="getCurrentBrandClass(brand)"
         *ngFor="let brand of brands | filterBrandPipe:filterText" value="1">{{brand.name}}</option>
     </select>

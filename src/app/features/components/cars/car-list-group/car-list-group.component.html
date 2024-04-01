@@ -1,0 +1,15 @@
+<div class="row" style="margin-top: 10px;">
+    <h3 *ngIf="!carList">Araba Bulunamadı</h3>
+ <div *ngFor="let car of carList.items" class="card" style="width: 16rem;margin:20px;opacity: 0.8;">
+ <img src="" class="card-img-top" alt="arabanın adı Image" height="150px" />
+ <div class="car-body">
+    <p class="card-text">Marka:<strong>{{car.brandName}}</strong></p>
+ </div>
+ <ul class="list-group list-group-flush">
+  <li class="list-group-item"><b>Model:</b><span style="float:right;">{{car.modelName}}</span></li>
+  <li class="list-group-item"><b>Model Yılı:</b><span style="float:right;">{{car.modelYear}}</span></li>
+  <li class="list-group-item"><b>Fiyat:</b><span style="float:right;">{{car.dailyPrice}}</span></li>
+ </ul>
+</div>
+</div>
+

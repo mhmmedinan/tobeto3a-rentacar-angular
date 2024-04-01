@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../../../shared/shared.module';
+import { BrandListGroupComponent } from '../../brands/brand-list-group/brand-list-group.component';
 
 @Component({
   selector: 'app-model-list-group',
   standalone: true,
-  imports: [FormsModule,CommonModule,RouterModule,SharedModule],
+  imports: [FormsModule,CommonModule,RouterModule,SharedModule,BrandListGroupComponent],
   templateUrl: './model-list-group.component.html',
   styleUrl: './model-list-group.component.scss'
 })
@@ -19,7 +20,15 @@ export class ModelListGroupComponent implements OnInit {
   currentModel!:GetModelListResponse;
   constructor(private modelService:ModelService){}
   ngOnInit(): void {
-    this.getModels("53a3ec8b-3efc-4e42-106d-08dc4a6f437e");
+    
+  }
+
+  onBrandAdded(brandId:string){
+    if(brandId){
+      this.modelService.getListByBrandId(brandId).subscribe(models=>{
+        this.models=models;
+      })
+    }
   }
 
   getModels(brandId:string){
