@@ -14,13 +14,11 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit{
   menuItems!:MenuItem[];
   userLogged!:boolean;
-  fullName!:string;
   constructor(private authService:AuthService,private router:Router){}
    ngOnInit(): void {
      this.getMenuItems();
      console.log(this.getUserName());
-     console.log(this.setUserLogged());
-     console.log(this.userLogged);
+     console.log(this.getUserId())
    }
 
    logOut(){
@@ -33,13 +31,17 @@ export class NavbarComponent implements OnInit{
    }
 
    getUserName():string{
-    return this.fullName=this.authService.getUserName();
+    return this.authService.getUserName();
+   }
+
+   getUserId():string{
+    return this.authService.getCurrentUserId();
    }
 
 
 
    async getMenuItems(){
-    if(this.userLogged===false){
+    if(this.authService.loggedIn()==true){
     this.menuItems=[
       {
         label:"AnaSayfa",icon:"pi pi-home",routerLink:'home-page'
@@ -49,13 +51,13 @@ export class NavbarComponent implements OnInit{
         label:"Kiralanan Arabalar",icon:"pi pi-car",routerLink:'rent-car'
       },
       {
-        label:"Profil",icon:"pi pi-user",routerLink:'profil',title:this.getUserName()
-      },
-      {
         label:"Çıkış Yap",icon:"pi pi-sign-out",command:()=>{
           this.logOut()
         }
-      }
+      },
+      {
+        label:this.getUserName(),icon:"pi pi-user",routerLink:'profil'
+      },
     
     ]}
     else{

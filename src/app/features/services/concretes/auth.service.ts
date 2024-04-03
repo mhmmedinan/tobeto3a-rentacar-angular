@@ -64,32 +64,26 @@ export class AuthService extends AuthBaseService {
   loggedIn():boolean{
     this.token=this.storageService.getToken();
     let isExpired = this.jwtHelper.isTokenExpired(this.token);
-    console.log(isExpired)
     return !isExpired;
     
   }
 
-  setUserName(){
+  getUserName():string{
     var decoded = this.getDecodedToken();
     var propUserName = Object.keys(decoded).filter(x=>x.endsWith("/name"))[0]
-    this.fullname=decoded[propUserName];
-    console.log(decoded[propUserName])
+    return this.fullname=decoded[propUserName];
   }
 
-  getUserName():string{
-    console.log(this.fullname)
-    return this.fullname;
-  }
+  // getUserName():string{
+  //   console.log(this.fullname)
+  //   return this.fullname;
+  // }
   
 
-  setCurrentUserId(){
+  getCurrentUserId():string{
     var decoded = this.getDecodedToken();
     var propUserId = Object.keys(decoded).filter(x=>x.endsWith("/nameidentifier"))[0]
-    this.userId=decoded[propUserId]
-  }
-
-  getUserId(){
-    return this.userId;
+    return this.userId=decoded[propUserId]
   }
 
 
