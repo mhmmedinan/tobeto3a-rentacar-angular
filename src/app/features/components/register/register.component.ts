@@ -36,9 +36,14 @@ export class RegisterComponent implements OnInit {
       this.authService.register(registerModel).subscribe((response)=>{
         alert("Kayıt Başarılı")
         this.router.navigate(['login']);
-      },(errorResponse:any)=>{
-        alert(errorResponse.error.Errors);
-      })
+      }, (errorResponse: any) => { 
+          errorResponse.error.Errors.forEach((error: any) => {
+            console.error(`Property: ${error.Property}`);
+            error.Errors.forEach((errorMessage: string) => {
+              alert(`Error: ${errorMessage}`);
+            });
+          });
+        })
     }
   }
 

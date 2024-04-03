@@ -21,14 +21,14 @@ export class LocalStorageService {
 
 
   setToken(token:string){
-    this.set("token",token)
+    localStorage.setItem("token",token);
   }
 
   removeToken(){
-    this.remove("token")
+    localStorage.removeItem("token")
   }
 
   getToken(){
-    this.get("token")
+    localStorage.getItem("token")
   }
 }

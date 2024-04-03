@@ -2,6 +2,7 @@ import { CarListGroupComponent } from './features/components/cars/car-list-group
 import { Routes } from '@angular/router';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { RegisterComponent } from './features/components/register/register.component';
+import { LoginComponent } from './features/components/login/login.component';
 
 export const routes: Routes = 
 [
@@ -12,6 +13,7 @@ export const routes: Routes =
       {path:"cars/model",pathMatch:"full",component:CarListGroupComponent},
       {path:"cars/model/:modelId",component:CarListGroupComponent}
    ]},
-   {path:'register',component:RegisterComponent}
+   {path:'register',component:RegisterComponent},
+   {path:'login',component:LoginComponent}
    
 ];
