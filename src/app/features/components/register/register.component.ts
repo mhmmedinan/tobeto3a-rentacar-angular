@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/concretes/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
     private router:Router){}
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.createRegisterForm();
   }
 
   createRegisterForm(){
@@ -36,8 +36,8 @@ export class RegisterComponent implements OnInit {
       this.authService.register(registerModel).subscribe((response)=>{
         alert("Kayıt Başarılı")
         this.router.navigate(['login']);
-      },(errorResponse)=>{
-        console.error(errorResponse);
+      },(errorResponse:any)=>{
+        alert(errorResponse.error.Errors);
       })
     }
   }

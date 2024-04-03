@@ -1,7 +1,7 @@
 <body class="text-center">
     
     <main class="form-signin">
-      <form>
+      <form [formGroup]="registerForm">
         
         <h1 class="h3 mb-3 fw-normal">Kayıt Ol</h1>
     
@@ -23,7 +23,7 @@
         </div>
     
        
-        <button class="w-100 btn btn-lg btn-primary">Kayıt Ol</button>
+        <button (click)="register()" class="w-100 btn btn-lg btn-primary">Kayıt Ol</button>
         
       </form>
     </main>
