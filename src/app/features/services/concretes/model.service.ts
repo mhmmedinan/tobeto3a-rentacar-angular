@@ -3,7 +3,8 @@ import { ModelBaseService } from '../abstracts/model-base.service';
 import { Observable } from 'rxjs';
 import { GetModelListResponse } from '../../models/responses/get-model-list-response';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment.development';
+import { environment } from '../../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'

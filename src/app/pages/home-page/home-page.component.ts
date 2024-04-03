@@ -3,11 +3,13 @@ import { ModelListGroupComponent } from '../../features/components/models/model-
 import { BrandListGroupComponent } from '../../features/components/brands/brand-list-group/brand-list-group.component';
 import { CarListGroupComponent } from '../../features/components/cars/car-list-group/car-list-group.component';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../../shared/shared.module';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [ModelListGroupComponent,BrandListGroupComponent,CarListGroupComponent,RouterModule],
+  imports: [ModelListGroupComponent,BrandListGroupComponent,
+    CarListGroupComponent,RouterModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })

@@ -4,7 +4,7 @@ import { Observable, map } from 'rxjs';
 import { PageRequest } from '../../../core/models/page-request';
 import { CarListItemDto } from '../../models/responses/cars/car-list-item-dto';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment.development';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
