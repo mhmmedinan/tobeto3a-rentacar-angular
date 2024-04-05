@@ -16,10 +16,10 @@ export class CarService extends CarBaseService {
   constructor(private httpClient:HttpClient) {super() }
 
   override getList(pageRequest: PageRequest): Observable<CarListItemDto> {
-    const headers = new HttpHeaders({
-      'Content-Type' : 'application/json',
-      'Authorization':`Bearer ${localStorage.getItem('token')}`
-    })
+    // const headers = new HttpHeaders({
+    //   'Content-Type' : 'application/json',
+    //   'Authorization':`Bearer ${localStorage.getItem('token')}`
+    // })
 
     const newRequest :{[key:string]:string | number}={
       page:pageRequest.page,
@@ -28,7 +28,7 @@ export class CarService extends CarBaseService {
 
     return this.httpClient.get<CarListItemDto>(this.apiUrl,{
       params:newRequest,
-      headers:headers
+      // headers:headers
     }).pipe(
       map((response)=>{
         const newResponse:CarListItemDto={

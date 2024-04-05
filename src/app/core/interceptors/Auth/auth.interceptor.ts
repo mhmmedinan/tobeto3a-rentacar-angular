@@ -1,23 +1,19 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import { Injectable, inject } from "@angular/core";
-import { Observable } from "rxjs";
+import { HttpInterceptorFn } from "@angular/common/http";
+import { inject } from "@angular/core";
 import { LocalStorageService } from "../../../features/services/concretes/local-storage.service";
 
-@Injectable()
-export class AuthInterceptor implements HttpInterceptor{
-   constructor(private storageService:LocalStorageService){}
 
-    intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    let token =localStorage.getItem('token')
-    console.log(token);
-    let newRequest:HttpRequest<any>;
-    newRequest=request.clone({
+export const AuthInterceptor: HttpInterceptorFn=(req,next)=>{
+    const storageService = inject(LocalStorageService);
+
+    const token = storageService.getToken();
+
+    const authRequest = req.clone({
       setHeaders:{
-        Authorization:`Bearer ${token}`,
-        ContentType:"application/json"
+        Authorization:`Bearer ${token}`
       }
-    })
-    return next.handle(newRequest);
-  }
 
+    })
+    return next(authRequest);
 }
+
