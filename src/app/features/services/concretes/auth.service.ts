@@ -39,7 +39,7 @@ export class AuthService extends AuthBaseService {
         this.storageService.setToken(response.accessToken.token);
         alert("Giriş yapıldı");
         setTimeout(()=>{
-          location.reload
+          window.location.reload()
         },400)
         return response;
       }
@@ -92,7 +92,7 @@ export class AuthService extends AuthBaseService {
     this.storageService.removeToken();
     alert("Çıkış yapıldı");
     setTimeout(function(){
-      location.reload()
+      window.location.reload()
     },400)
   }
 
