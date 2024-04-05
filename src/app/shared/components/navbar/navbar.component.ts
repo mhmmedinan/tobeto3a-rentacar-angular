@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit{
      this.getMenuItems();
      console.log(this.getUserName());
      console.log(this.getUserId())
+     console.log(this.authService.getRoles())
    }
 
    logOut(){
@@ -41,14 +42,15 @@ export class NavbarComponent implements OnInit{
 
 
    async getMenuItems(){
-    if(this.authService.loggedIn()==true){
+    const isLoggedIn = await this.authService.loggedIn();
+    if(isLoggedIn){
     this.menuItems=[
       {
         label:"AnaSayfa",icon:"pi pi-home",routerLink:'home-page'
       }, 
       
       {
-        label:"Kiralanan Arabalar",icon:"pi pi-car",routerLink:'rent-car'
+        label:"Kiralanan Arabalar",icon:"pi pi-car",routerLink:'car-list'
       },
       {
         label:"Çıkış Yap",icon:"pi pi-sign-out",command:()=>{
@@ -56,7 +58,7 @@ export class NavbarComponent implements OnInit{
         }
       },
       {
-        label:this.getUserName(),icon:"pi pi-user",routerLink:'profil'
+        label:await this.getUserName(),icon:"pi pi-user",routerLink:'profil'
       },
     
     ]}
@@ -66,7 +68,7 @@ export class NavbarComponent implements OnInit{
           label:"AnaSayfa",icon:"pi pi-home",routerLink:'home-page'
         },
         {
-          label:"Arabalar",icon:"pi pi-car",routerLink:'car-list'
+          label:"Arabalar",icon:"pi pi-car"
         },
         {
           label:"Giriş Yap",icon:"pi pi-sign-in",routerLink:'login'
@@ -75,6 +77,13 @@ export class NavbarComponent implements OnInit{
           label:"Kayıt Ol",icon:"pi pi-user-plus",routerLink:'register'
         }
       ]
+    }
+    if(this.authService.isAdmin()){
+      this.menuItems.push(
+      {
+        label:"Admin Panel",routerLink:'admin'
+      },
+    )
     }
    }
    

@@ -3,6 +3,9 @@ import { Routes } from '@angular/router';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { RegisterComponent } from './features/components/register/register.component';
 import { LoginComponent } from './features/components/login/login.component';
+import { CarListPageComponent } from './pages/car-list-page/car-list-page.component';
+import { LoginGuard } from './core/guards/login/login.guard';
+import { AdminComponent } from './pages/admin/admin.component';
 
 export const routes: Routes = 
 [
@@ -12,8 +15,11 @@ export const routes: Routes =
       {path:"",pathMatch:"full",component:CarListGroupComponent},
       {path:"cars/model",pathMatch:"full",component:CarListGroupComponent},
       {path:"cars/model/:modelId",component:CarListGroupComponent}
+      
    ]},
    {path:'register',component:RegisterComponent},
-   {path:'login',component:LoginComponent}
+   {path:'login',component:LoginComponent},
+   {path:"car-list",component:CarListPageComponent,canActivate:[LoginGuard]},
+   {path:"admin",component:AdminComponent}
    
 ];

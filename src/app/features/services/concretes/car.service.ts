@@ -3,24 +3,32 @@ import { CarBaseService } from '../abstracts/car-base.service';
 import { Observable, map } from 'rxjs';
 import { PageRequest } from '../../../core/models/page-request';
 import { CarListItemDto } from '../../models/responses/cars/car-list-item-dto';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarService extends CarBaseService {
+
+  
   private readonly apiUrl:string = `${environment.API_URL}/cars`
   constructor(private httpClient:HttpClient) {super() }
 
   override getList(pageRequest: PageRequest): Observable<CarListItemDto> {
+    const headers = new HttpHeaders({
+      'Content-Type' : 'application/json',
+      'Authorization':`Bearer ${localStorage.getItem('token')}`
+    })
+
     const newRequest :{[key:string]:string | number}={
       page:pageRequest.page,
       pageSize:pageRequest.pageSize
     };
 
     return this.httpClient.get<CarListItemDto>(this.apiUrl,{
-      params:newRequest
+      params:newRequest,
+      headers:headers
     }).pipe(
       map((response)=>{
         const newResponse:CarListItemDto={

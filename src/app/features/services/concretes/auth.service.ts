@@ -19,6 +19,7 @@ export class AuthService extends AuthBaseService {
   userId!:string;
   token:any;
   jwtHelper:JwtHelperService = new JwtHelperService;
+  claims:string[]=[]
 
 
   private readonly apiUrl:string = `${environment.API_URL}/auth`
@@ -95,6 +96,20 @@ export class AuthService extends AuthBaseService {
     },400)
   }
 
-  
+  getRoles():string[]{
+    if(this.storageService.getToken()){
+      var decoded = this.getDecodedToken()
+      var role = Object.keys(decoded).filter(x=>x.endsWith("/role"))[0]
+      this.claims=decoded[role]
+    }
+    return this.claims;
+  }
+
+  isAdmin(){
+    if(this.claims.includes("admin")){
+      return true;
+    }
+    return false;
+  }
   
 }
