@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../../../features/services/concretes/auth.service';
 import { Router } from '@angular/router';
+import { AuthBaseService } from '../../../features/services/abstracts/auth-base.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit{
   menuItems!:MenuItem[];
   userLogged!:boolean;
-  constructor(private authService:AuthService,private router:Router){}
+  constructor(private authService:AuthBaseService,private router:Router){}
    ngOnInit(): void {
      this.getMenuItems();
      console.log(this.getUserName());

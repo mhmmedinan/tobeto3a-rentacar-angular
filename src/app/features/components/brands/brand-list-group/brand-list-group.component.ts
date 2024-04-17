@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../../../shared/shared.module';
+import { BrandBaseService } from '../../../services/abstracts/brand-base.service';
 
 @Component({
   selector: 'app-brand-list-group',
@@ -21,7 +22,7 @@ export class BrandListGroupComponent implements OnInit{
   brands!:GetListBrandResponse[];
   currentBrand!:GetListBrandResponse;
   filterText="";
-  constructor(private brandService:BrandService){}
+  constructor(private brandService:BrandBaseService){}
   
   ngOnInit(): void {
     this.getBrands();

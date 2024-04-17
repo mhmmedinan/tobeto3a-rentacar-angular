@@ -5,9 +5,7 @@ import { GetListBrandResponse } from '../../models/responses/brands/get-brand-li
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class BrandService extends BrandBaseService {
   private readonly apiUrl:string = `${environment.API_URL}/brands`
   constructor(private httpClient:HttpClient) {super() }

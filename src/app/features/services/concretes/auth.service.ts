@@ -11,9 +11,7 @@ import { UserForLoginRequest } from '../../models/requests/users/user-for-login-
 import { AccessTokenModel } from '../../models/responses/users/access-token-model';
 import { TokenModel } from '../../models/responses/users/token-model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService extends AuthBaseService {
   fullname!:string;
   userId!:string;
@@ -38,9 +36,6 @@ export class AuthService extends AuthBaseService {
     .pipe(map(response=>{
         this.storageService.setToken(response.accessToken.token);
         alert("Giriş yapıldı");
-        setTimeout(()=>{
-          window.location.reload()
-        },400)
         return response;
       }
      
@@ -105,7 +100,7 @@ export class AuthService extends AuthBaseService {
     return this.claims;
   }
 
-  isAdmin(){
+  isAdmin():boolean{
     if(this.claims.includes("admin")){
       return true;
     }
