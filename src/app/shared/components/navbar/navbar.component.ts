@@ -53,7 +53,7 @@ export class NavbarComponent implements OnInit{
         label:"Marka Ekle",icon:"pi pi-plus",routerLink:'add-brand'
       }, 
       {
-        label:"Kiralanan Arabalar",icon:"pi pi-car",routerLink:'car-list'
+        label:"Arabalar",icon:"pi pi-car",routerLink:'car-list'
       },
       {
         label:"Çıkış Yap",icon:"pi pi-sign-out",command:()=>{
