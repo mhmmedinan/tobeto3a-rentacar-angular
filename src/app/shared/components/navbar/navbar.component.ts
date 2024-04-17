@@ -49,7 +49,9 @@ export class NavbarComponent implements OnInit{
       {
         label:"AnaSayfa",icon:"pi pi-home",routerLink:'home-page'
       }, 
-      
+      {
+        label:"Marka Ekle",icon:"pi pi-plus",routerLink:'add-brand'
+      }, 
       {
         label:"Kiralanan Arabalar",icon:"pi pi-car",routerLink:'car-list'
       },

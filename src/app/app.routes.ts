@@ -6,6 +6,8 @@ import { LoginComponent } from './features/components/login/login.component';
 import { CarListPageComponent } from './pages/car-list-page/car-list-page.component';
 import { LoginGuard } from './core/guards/login/login.guard';
 import { AdminComponent } from './pages/admin/admin.component';
+import { AddBrandFormComponent } from './features/components/brands/add-brand-form/add-brand-form.component';
+import { BrandListComponent } from './features/components/brands/brand-list/brand-list.component';
 
 export const routes: Routes = 
 [
@@ -20,6 +22,8 @@ export const routes: Routes =
    {path:'register',component:RegisterComponent},
    {path:'login',component:LoginComponent},
    {path:"car-list",component:CarListPageComponent,canActivate:[LoginGuard]},
-   {path:"admin",component:AdminComponent}
+   {path:"admin",component:AdminComponent},
+   {path:"add-brand",pathMatch:'full',component:AddBrandFormComponent},
+   {path:"brand-list",component:BrandListComponent}
    
 ];

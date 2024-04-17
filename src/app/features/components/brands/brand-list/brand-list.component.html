@@ -1,0 +1,18 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Marka Adı</th>
+        <th scope="col">İşlemler</th>
+      </tr>
+    </thead>
+    <tbody>
+        @for (brand of brands; track brand.id) {
+      <tr>
+        <th scope="row">{{brand.id}}</th>
+        <td colspan="2">{{brand.name}}</td>
+        <td><button (click)="delete(brand.id)">Sil</button></td>
+      </tr>
+    }
+    </tbody>
+  </table>
